@@ -7,7 +7,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using SharpNav.Geometry;
 using Eppy;
-
 #if MONOGAME
 using Vector3 = Microsoft.Xna.Framework.Vector3;
 #elif OPENTK
@@ -39,7 +38,7 @@ namespace SharpNav
 			this.tris = verts;
 			this.triCount = triCount;
 			this.defaultArea = defaultArea;
-			conditions = new List<Tuple<Func<Triangle3, bool>, Area>>();
+			conditions = new List<System.Tuple<Func<Triangle3, bool>, Area>>();
 		}
 
 		/// <summary>
@@ -226,7 +225,7 @@ namespace SharpNav
 		/// <returns>The same instance.</returns>
 		public AreaGenerator MarkAboveSlope(float angle, Area area)
 		{
-			conditions.Add(new Tuple<Func<Triangle3, bool>, Area>(
+			conditions.Add(new System.Tuple<Func<Triangle3, bool>, Area>(
 				tri =>
 				{
 					Vector3 n = tri.Normal;
@@ -247,7 +246,7 @@ namespace SharpNav
 		/// <returns>The same instance.</returns>
 		public AreaGenerator MarkBelowSlope(float angle, Area area)
 		{
-			conditions.Add(new Tuple<Func<Triangle3, bool>, Area>(
+			conditions.Add(new System.Tuple<Func<Triangle3, bool>, Area>(
 				tri =>
 				{
 					Vector3 n = tri.Normal;
@@ -269,7 +268,7 @@ namespace SharpNav
 		/// <returns>The same instance.</returns>
 		public AreaGenerator MarkAtSlope(float angle, float range, Area area)
 		{
-			conditions.Add(new Tuple<Func<Triangle3, bool>, Area>(
+			conditions.Add(new System.Tuple<Func<Triangle3, bool>, Area>(
 				tri =>
 				{
 					Vector3 n = tri.Normal;
@@ -290,7 +289,7 @@ namespace SharpNav
 		/// <returns>The same instance.</returns>
 		public AreaGenerator MarkBelowHeight(float y, Area area)
 		{
-			conditions.Add(new Tuple<Func<Triangle3, bool>, Area>(
+			conditions.Add(new System.Tuple<Func<Triangle3, bool>, Area>(
 				tri =>
 				{
 					if (tri.A.Y <= y || tri.B.Y <= y || tri.C.Y <= y)
@@ -323,7 +322,7 @@ namespace SharpNav
 		/// <returns>The same instance.</returns>
 		public AreaGenerator MarkAboveHeight(float y, Area area)
 		{
-			conditions.Add(new Tuple<Func<Triangle3, bool>, Area>(
+			conditions.Add(new System.Tuple<Func<Triangle3, bool>, Area>(
 				tri =>
 				{
 					if (tri.A.Y >= y || tri.B.Y >= y || tri.C.Y >= y)
@@ -344,7 +343,7 @@ namespace SharpNav
 		/// <returns>The same instance.</returns>
 		public AreaGenerator MarkCustomFilter(Func<Triangle3, bool> func, Area area)
 		{
-			conditions.Add(new Tuple<Func<Triangle3, bool>, Area>(func, area));
+			conditions.Add(new System.Tuple<Func<Triangle3, bool>, Area>(func, area));
 
 			return this;
 		}
