@@ -6,37 +6,87 @@ using UnityEngine.EventSystems;
 
 public class FlagCollectedTrigger : MonoBehaviour
 {
-    public static int userScore;
-    
+    private const int GameWinningScore = 5;
+    public static int UserScore;
+    public static int OpponentScore;
+
     public GameObject UserCollectedFlagTrigger;
-    //public GameObject OpponentCollectedFlagTrigger;
 
     public GameObject Gate;
-    public GameObject UserScore;
-    //public GameObject OpponentScore;
+    public GameObject UserCar;
+    public GameObject OpponentCar;
+    public GameObject UserScoreLabel;
+    public GameObject OpponentScoreLabel;
 
     void Start()
     {
         UserCollectedFlagTrigger.SetActive(true);
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        // Increasing user score when triggers
-        userScore++;
-        
-        // Changing the user score on the score board
-        UserScore.GetComponent<Text>().text = userScore.ToString();
+        // Removing the gate
+        RemoveGate();
 
-        // Moving the 
-        MoveGate();
+        Debug.Log(other.tag);
+
+        // Checking if the opponent car activated the trigger or the user car activated it
+        if (OpponentCar.tag == other.tag)
+            IncreaseOpponentScore();
+        else if (UserCar.tag == other.tag)
+            IncreaseUserScore();
+        else
+            ActivateGate();
+
+        CheckGameEnd();
     }
 
-    void MoveGate()
+    private void CheckGameEnd()
     {
-        var position = Gate.transform.localPosition;
-        position.z += 10;
-        var rotation = Gate.transform.localRotation;
-        Gate.transform.SetPositionAndRotation(position, rotation); 
+        if (OpponentScore == GameWinningScore)
+        {
+            PlayerLost();
+        }
+
+        if (UserScore == GameWinningScore)
+        {
+            PlayerWon();
+        }
+    }
+
+    private void PlayerWon()
+    {
+    }
+
+    private void PlayerLost()
+    {
+    }
+
+    private void IncreaseOpponentScore()
+    {
+        // Increasing opponent score when triggers
+        OpponentScore++;
+
+        // Changing the opponent score on the score board
+        OpponentScoreLabel.GetComponent<Text>().text = OpponentScore.ToString();
+    }
+
+    private void IncreaseUserScore()
+    {
+        // Increasing user score when triggers
+        UserScore++;
+
+        // Changing the user score on the score board
+        UserScoreLabel.GetComponent<Text>().text = UserScore.ToString();
+    }
+
+    private void RemoveGate()
+    {
+        Gate.SetActive(false);
+    }
+
+    private void ActivateGate()
+    {
+        Gate.SetActive(true);
     }
 }

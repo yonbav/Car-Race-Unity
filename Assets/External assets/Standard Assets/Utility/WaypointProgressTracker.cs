@@ -92,6 +92,7 @@ namespace UnityStandardAssets.Utility
                     speed = Mathf.Lerp(speed, (lastPosition - transform.position).magnitude/Time.deltaTime,
                                        Time.deltaTime);
                 }
+
                 target.position =
                     circuit.GetRoutePoint(progressDistance + lookAheadForTargetOffset + lookAheadForTargetFactor*speed)
                            .position;

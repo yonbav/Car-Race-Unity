@@ -437,8 +437,10 @@
     <Compile Include="Assets\External assets\Theme_K4_CartoonTown\Scripts\ToonGameController.cs" />
     <Compile Include="Assets\External assets\Theme_K4_CartoonTown\Scripts\VechileCam.cs" />
     <Compile Include="Assets\Scripts\CameraStable.cs" />
+    <Compile Include="Assets\Scripts\CarMoveAI.cs" />
     <Compile Include="Assets\Scripts\Countdown.cs" />
     <Compile Include="Assets\Scripts\FlagCollectedTrigger.cs" />
+    <Compile Include="Assets\Scripts\SwitchCamera.cs" />
     <Compile Include="Assets\Scripts\TimeScreenManager.cs" />
     <None Include="Assets\External assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\External assets\Cartoon Town and Farm\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
